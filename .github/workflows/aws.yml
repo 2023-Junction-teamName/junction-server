@@ -66,7 +66,7 @@ jobs:
         with:
           host: ec2-3-35-213-48.ap-northeast-2.compute.amazonaws.com
           username: ec2-user
-          password: ${{ secrets.EC2_PASSWORD }}
+          key: ${{ secrets.EC2_KEY }}
           envs: GITHUB_SHA
           script: |
             sudo docker pull ${{ steps.docker_meta.outputs.tags }}
