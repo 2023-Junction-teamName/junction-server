@@ -3,8 +3,8 @@
 DOCKER_APP_NAME="junction-server"
 NGINX_APP_NAME="junction-nginx"
 # Blue 를 기준으로 현재 떠있는 컨테이너를 체크한다.
-EXIST_BLUE=$(docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml ps | grep running)
-EXIST_NGINX=$(docker-compose -p ${NGINX_APP_NAME} -f docker-compose.nginx.yml ps | grep running)
+EXIST_BLUE=$(docker-compose -p ${DOCKER_APP_NAME}-blue -f docker-compose.blue.yml ps | grep Up)
+EXIST_NGINX=$(docker-compose -p ${NGINX_APP_NAME} -f docker-compose.nginx.yml ps | grep Up)
 
 # 컨테이너 스위칭
 if [ -z "$EXIST_BLUE" ]; then
@@ -27,7 +27,7 @@ fi
 sleep 60
 
 # 새로운 컨테이너가 제대로 떴는지 확인
-EXIST_AFTER=$(docker-compose -p ${DOCKER_APP_NAME}-${AFTER_COMPOSE_COLOR} -f docker-compose.${AFTER_COMPOSE_COLOR}.yml ps | grep running)
+EXIST_AFTER=$(docker-compose -p ${DOCKER_APP_NAME}-${AFTER_COMPOSE_COLOR} -f docker-compose.${AFTER_COMPOSE_COLOR}.yml ps | grep Up)
 if [ -n "$EXIST_AFTER" ]; then
     # nginx.config를 컨테이너에 맞게 변경해주고 reload 한다
     sudo cp ~/nginx.${AFTER_COMPOSE_COLOR}.conf ~/nginx.conf
