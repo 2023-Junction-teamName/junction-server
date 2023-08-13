@@ -69,6 +69,7 @@ jobs:
           password: ${{ secrets.EC2_PASSWORD }}
           envs: GITHUB_SHA
           script: |
-            sudo docker pull ${{ steps.docker_meta.outputs.tags }}
-            sudo docker pull ${{ secrets.DOCKER_HUB_ID }}/junction
-            ~/deploy.sh
+            sudo docker
+#            sudo docker pull ${{ steps.docker_meta.outputs.tags }}
+#            sudo docker pull ${{ secrets.DOCKER_HUB_ID }}/junction
+#            ~/deploy.sh
