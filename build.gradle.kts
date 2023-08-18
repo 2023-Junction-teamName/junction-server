@@ -63,3 +63,13 @@ tasks.asciidoctor {
     inputs.dir(snippetsDir)
     dependsOn(tasks.test)
 }
+
+// copy security config
+tasks.register<Copy>("copySecurity") {
+    from("${rootProject.rootDir}/config/application-security.yml")
+    into("${rootProject.rootDir}/src/main/resources/")
+}
+
+tasks.processResources {
+    dependsOn("copySecurity")
+}
